@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="637.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <tabs>
+        <Tab text="Create your array">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <VBox alignment="TOP_CENTER" layoutX="26.0" layoutY="14.0" prefHeight="286.0" prefWidth="547.0">
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="68.0" prefWidth="547.0">
+                                    <children>
+                                        <Label text="Size of your array: " />
+                                        <TextField fx:id="SizeField" prefHeight="26.0" prefWidth="90.0" />
+                                    </children>
+                                </HBox>
+                                <Label text="Type of Array" />
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
+                                        <Button fx:id="TypeButtonRandom" mnemonicParsing="false" onAction="#Random" text="Random" />
+                                        <Button fx:id="TypeButtonDescending" mnemonicParsing="false" onAction="#Descending" text="Descending" />
+                                        <Button fx:id="TypeButtonAltNarrowing" mnemonicParsing="false" onAction="#Narrowing" text="Alternating, narrowing" />
+                                        <Button fx:id="TypeButtonAltExpanding" mnemonicParsing="false" onAction="#Expanding" text="Alternating, expanding" />
+                                    </children>
+                                </HBox>
+                                <Label text="Example:" />
+                                <Label fx:id="PreviewTag" />
+                                <Button fx:id="CreateButton" mnemonicParsing="false" onAction="#Create" text="Create" />
+                            </children>
+                        </VBox>
+                    </children></AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="Test">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <VBox layoutX="2.0" prefHeight="98.0" prefWidth="600.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="600.0" spacing="70.0">
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="600.0" spacing="100.0">
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="580.0" spacing="100.0">
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_LEFT" layoutY="28.0" prefHeight="339.0" prefWidth="611.0" spacing="25.0">
+                     <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="32.0">
+                           <children>
+                              <Label text="Sorting Algorithm" />
+                              <Label text="Bubble" />
+                              <Label text="Insertion" />
+                              <Label text="Quick" />
+                              <Label text="Merge" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="32.0">
+                           <children>
+                              <Label text="Changes" />
+                              <Label fx:id="ChangesLabelBubble" text="--" />
+                              <Label fx:id="ChangesLabelInsertion" text="--" />
+                              <Label fx:id="ChangesLabelQuick" text="--" />
+                              <Label fx:id="ChangesLabelMerge" text="--" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="32.0">
+                           <children>
+                              <Label text="Comparisions" />
+                              <Label fx:id="ComparesLabelBubble" text="--" />
+                              <Label fx:id="ComparisionsLabelInsertion" text="--" />
+                              <Label fx:id="ComparisionsLabelQuick" text="--" />
+                              <Label fx:id="ComparisionsLabelMerge" text="--" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="339.0" prefWidth="143.0" spacing="32.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#RunTests" text="Run Tests" />
+                              <Button mnemonicParsing="false" onAction="#Record" text="Record Results" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </HBox>
+               </children></AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="Learn about sorting algorithms">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <VBox alignment="TOP_CENTER" layoutX="-1.0" prefHeight="368.0" prefWidth="600.0">
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                                    <children>
+                                        <Button fx:id="LearningButtonSortingAlgorithms" mnemonicParsing="false" onAction="#LearnSortingAlgorithms" text="What are they?" />
+                                        <Button fx:id="LearningButtonBubble" mnemonicParsing="false" onAction="#LearnBubble" text="Bubble" />
+                                        <Button fx:id="LearningButtonInsertion" mnemonicParsing="false" onAction="#LearnInsertion" text="Insertion" />
+                                        <Button fx:id="LearningButtonMerge" mnemonicParsing="false" onAction="#LearnMerge" text="Merge" />
+                                        <Button fx:id="LearningButtonBogo" mnemonicParsing="false" onAction="#LearnBogo" text="Bogo" />
+                                        <Button fx:id="LearningButtonQuicksort" mnemonicParsing="false" onAction="#LearnQuicksort" text="Quicksort" />
+                                    </children>
+                                </HBox>
+                                <Label fx:id="LearningTag" alignment="TOP_CENTER" contentDisplay="TOP" textAlignment="CENTER" />
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+    <Tab text="Recent Results">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <HBox layoutY="1.0" prefHeight="366.0" prefWidth="630.0">
+                     <children>
+                        <ListView fx:id="List" onMouseClicked="#ViewResult" prefHeight="366.0" prefWidth="230.0" />
+                        <VBox alignment="TOP_CENTER" prefHeight="366.0" prefWidth="84.0" spacing="32.0">
+                           <children>
+                              <Label text="Algorithm" />
+                              <Label text="Bubble" />
+                              <Label text="Insertion" />
+                              <Label text="Quick" />
+                              <Label text="Merge" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="366.0" prefWidth="84.0" spacing="32.0">
+                           <children>
+                              <Label text="Changes" />
+                              <Label fx:id="BCh" text="--" />
+                              <Label fx:id="ICh" text="--" />
+                              <Label fx:id="QCh" text="--" />
+                              <Label fx:id="MCh" text="--" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="366.0" prefWidth="84.0" spacing="32.0">
+                           <children>
+                              <Label text="Compares" />
+                              <Label fx:id="BCo" text="--" />
+                              <Label fx:id="ICo" text="--" />
+                              <Label fx:id="QCo" text="--" />
+                              <Label fx:id="MCo" text="--" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_CENTER" prefHeight="366.0" prefWidth="119.0" spacing="32.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#SaveToFile" text="Save to file" />
+                              <TextField fx:id="FileNameField" promptText="File Name" />
+                              <Button mnemonicParsing="false" onAction="#ReadFromFile" text="Load From File" />
+                              <TextField fx:id="FileNameFieldRead" promptText="File Name" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+      </content>
+    </Tab>
+    </tabs>
+</TabPane>
