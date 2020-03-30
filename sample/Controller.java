@@ -13,11 +13,29 @@ import java.util.Random;
 
 import static java.lang.Math.abs;
 
+/*
+            Brief guide:
+            To create an array, first type a number into the 'size of your array' text box, then select one of the four
+            available types. Once you click the 'Create' button, an array of the specified size and type will be created
+            and assigned to MainArray.
+
+            Then, go to the 'Test' section. clicking the 'Run Tests' button will run MainArray through all 4 sorting
+            algorithms, recording the amount of changes (ie any use of '=') and comparisons (any use of a comparison operator)
+            Once the labels are filled with values, you can press the 'Record Results' button to save your results to a
+            ListView in the 'Recent Results' tab.
+            From there you can preview your results by clicking on any element of the list, and the appropriate labels
+            will fill up to show the full results of your test.
+            If you wish to save those results, type a file name in the text box below the 'Save to file' button, which will
+            print your results into that file. There is no need to add ".txt" to the end. It will not empty your ListView.
+            Load From File works intuitively, and does not clear the file.
+            Neither Save nor load will append to the file/list
+ */
+
 public class Controller {
     public Label LearningTag;
-    public int[] MainArray;
+    public int[] MainArray; //This will serve as the array being tested, and will not be altered after each algorithm is finished
     public int Arraytype = 0;
-    public int Currenttype;
+    public int Currenttype; //Currenttype should accurately reflect the contents of MainArray at any given moment
     public Label PreviewTag;
     public TextField SizeField;
     public Label ChangesLabelBubble;
@@ -56,20 +74,56 @@ public class Controller {
     }
 
     public void LearnInsertion(ActionEvent actionEvent) {
-        LearningTag.setText("Insertion Text");
+        LearningTag.setText("Insertion sort is an algorithm that builds a sorted array by inserting one element at a time, starting from the left\n" +
+                "2, 8, 4, 3, 9\n" +
+                "we will start with the very first element, 2. Obviously, an array of size one is guaranteed to be sorted.\n" +
+                "2,] 8, 4, 3, 9\n" +
+                "we will then integrate 8. Since it is higher than 2, it is already in order. Assume that everything to the left of the\n" +
+                " ']' is sorted\n" +
+                "2, 8,] 4, 3, 9\n" +
+                "we will then have to integrate the 4, which goes in between the 3 and the 8\n" +
+                "2, 4, 8,] 3, 9\n" +
+                "and then the three\n" +
+                "2, 3, 4, 8,] 9\n" +
+                "2, 3, 4, 8, 9]\n" +
+                "The array is now sorted\n");
     }
 
     public void LearnMerge(ActionEvent actionEvent) {
-        LearningTag.setText("Merge Text");
+        LearningTag.setText("Merge Sort is a recursive algorithm, meaning that a Merge sort function will usually call itself inside the function.\n" +
+                "Merge sort splits the array up into subarray and gradually merges them so they are in order.\n" +
+                "5, 8, 2, 3, 4, 1, 7, 6\n" +
+                "5, 8, 2, 3,| 4, 1, 7, 6\n" +
+                "5, 8,| 2, 3,| 4, 1,| 7, 6\n" +
+                "5,| 8,| 2,| 3,| 4,| 1,| 7,| 6\n" +
+                "5, 8,| 2, 3,| 1, 4,| 6, 7\n" +
+                "2, 3, 5, 8,| 1, 4, 6, 7\n" +
+                "1, 2, 3, 4, 5, 6, 7, 8\n" +
+                "The process of merging 2 subarrays is quite simple. Create a new array, put a counter at the beginning of each\n" +
+                "subarray, and repeatedly take the smaller element, moving up each counter, and put it into the new array.\n" +
+                "Note that both subarrays must be sorted for the merge to work"
+                );
 
     }
 
     public void LearnBogo(ActionEvent actionEvent) {
-        LearningTag.setText("Bogo Text");
+        LearningTag.setText("Bogo sort is an impractical algorithm in which the elements are repeatedly randomized\n " +
+                "and checked until they are in order.\n" +
+                "On average, this algorithm takes n! (factorial) time to complete. However, since it can theoretically sort\n" +
+                "any array on its first try, it is technically speaking the fastest sorting algorithm in the best case.");
     }
 
     public void LearnQuicksort(ActionEvent actionEvent) {
-        LearningTag.setText("Quicksort text");
+        LearningTag.setText("Quicksort is another recursive algorithm, similar to Merge sort. This one works differently however.\n" +
+                "To do Quicksort, first select an element to be the 'Pivot'. It can be any element you wish, but I prefer to \n" +
+                "use the first element. Then, restructure the array so that all the elements that are less than the pivot are to the\n" +
+                "left of the pivot, and all elements greater are to the right. Repeat for the arrays on either side of the pivot.\n" +
+                "[5], 8, 4, 7, 3, 1, 2, 6\n" +
+                "use 5 as the pivot\n" +
+                "[2, 4, 3, 1] [5] [7, 8, 6]\n" +
+                "notice now that the left and right subarrays are of numbers less than five and of numbers greater than five\n" +
+                "[1, [2] 3, 4] [5] [6, [7] 8])\n" +
+                "This is commonly believed to be the most efficient sorting algorithm.");
     }
 
     public void Random(ActionEvent actionEvent) {
@@ -154,10 +208,10 @@ public class Controller {
 
         boolean sorted = false;
         int temp;
-        while (!sorted) {
+        while (!sorted) { //needs to repeat this process until the array has been found to be sorted
             for (int i = 0; i < (newArray.length) - 1; i++) {
                 compares++;
-                if (newArray[i] > newArray[i + 1]) {
+                if (newArray[i] > newArray[i + 1]) { //checks if the 2 elements are out of order and swaps them if they are
                     temp = newArray[i];
                     newArray[i] = newArray[i + 1];
                     newArray[i + 1] = temp;
@@ -165,7 +219,7 @@ public class Controller {
                 }
             }
             sorted = true;
-            for (int i = 0; i < newArray.length - 1 && sorted; i++) {
+            for (int i = 0; i < newArray.length - 1 && sorted; i++) { //checking if the array is in order
                 compares++;
                 if (newArray[i] > newArray[i + 1]) {
                     sorted = false;
@@ -188,30 +242,28 @@ public class Controller {
 
         for (int i = 0; i < newArray.length; i++) {
             compares++;
-            for (int ii = 0; newArray[ii] < newArray[i]; ii++) {
+            for (int ii = 0; newArray[ii] < newArray[i]; ii++) { //find the position where the next element is to be inserted
                 compares++;
                 location++;
             }
 
             temp = newArray[i];
 
-            for (int ii = i; ii > location; ii--) {
+            for (int ii = i; ii > location; ii--) {//inserts that number into the slot
                 newArray[ii] = newArray[ii - 1];
                 changes++;
             }
-            //System.out.println("reached checkpoint 3" + Arrays.toString(newArray) +"\n");
             newArray[location] = temp;
             changes++;
             location = 0;
         }
-        //System.out.println("Reached checkpoint 4"+ Arrays.toString(newArray) +"\n");
         ChangesLabelInsertion.setText(String.valueOf(changes));
         ComparisionsLabelInsertion.setText(String.valueOf(compares));
 
-        System.out.println("finished\n");
-        for (int i = 0; i < newArray.length; i++) {
+/*        for (int i = 0; i < newArray.length; i++) {
             System.out.println(newArray[i]);
-        }
+        }*/ //use this to print the array after the algorithm is complete
+
 
 
     } //incomplete recording of comparisions and checks
@@ -227,9 +279,9 @@ public class Controller {
         ComparisionsLabelQuick.setText(String.valueOf(results[1]));
 
 
-        for (int ii = 0; ii < MainArray.length; ii++) {
+        /*for (int ii = 0; ii < MainArray.length; ii++) {
             System.out.println(MainArray[ii]);
-        }
+        }*/
         System.arraycopy(Backup, 0, MainArray, 0, MainArray.length);
     }
 
@@ -329,23 +381,20 @@ public class Controller {
     }
     public int[] MergeSort(int start, int end, int changes, int comparisons) //both start and end should be inclusive. 4, 7, would be 4, 5, 6, 7
     {
-        int Comparisons = comparisons;
-        int Changes = changes;
         int[] x = {0, 0};
         int[] y = {0, 0};
         int[] z = {0, 0};
-         //still needs to be filled
-        if(end==start) {
+        if(end==start) { //cannot merge a segment of length 1
             return z;
         }
         int half = (end - start) / 2 + start;
 
         x = MergeSort(start, half, changes, comparisons);
         y = MergeSort(half + 1, end, changes, comparisons);
-        z = Merge(start, half+1, half+1, end+1); //potential for error
+        z = Merge(start, half+1, half+1, end+1);
         int[] a = {0, 0};
         a[0] = changes + x[0] + y[0] + z[0];
-        a[1] = comparisons + x[1] + y[1] + z[1];
+        a[1] = comparisons + x[1] + y[1] + z[1]; //accumulates previous changes and comparisons alongside those of subarrays
         return a;
     }
 
