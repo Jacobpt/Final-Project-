@@ -165,11 +165,13 @@
                               <Label fx:id="MCo" text="--" />
                            </children>
                         </VBox>
-                        <VBox alignment="TOP_CENTER" prefHeight="366.0" prefWidth="119.0" spacing="32.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="366.0" prefWidth="119.0" spacing="15.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#SaveToFile" text="Save to file" />
+                              <Label text="Overwrites the file" />
                               <TextField fx:id="FileNameField" promptText="File Name" />
                               <Button mnemonicParsing="false" onAction="#ReadFromFile" text="Load From File" />
+                              <Label text="Overwrites the array" />
                               <TextField fx:id="FileNameFieldRead" promptText="File Name" />
                            </children>
                         </VBox>
