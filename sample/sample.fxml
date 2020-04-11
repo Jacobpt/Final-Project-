@@ -137,7 +137,7 @@
                <children>
                   <HBox layoutY="1.0" prefHeight="366.0" prefWidth="630.0">
                      <children>
-                        <ListView fx:id="List" onMouseClicked="#ViewResult" prefHeight="366.0" prefWidth="230.0" />
+                        <ListView fx:id="List" onMouseClicked="#ViewResult" prefHeight="366.0" prefWidth="192.0" />
                         <VBox alignment="TOP_CENTER" prefHeight="366.0" prefWidth="84.0" spacing="32.0">
                            <children>
                               <Label text="Algorithm" />

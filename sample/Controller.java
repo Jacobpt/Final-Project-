@@ -20,14 +20,19 @@ import static java.lang.Math.abs;
             and assigned to MainArray.
 
             Then, go to the 'Test' section. clicking the 'Run Tests' button will run MainArray through all 4 sorting
-            algorithms, recording the amount of changes (ie any use of '=') and comparisons (any use of a comparison operator)
+            algorithms, recording the amount of changes (ie any use of '=') and comparisons (any use of a comparison operator).
+            A swap will be recorded as three changes, since you need to change 3 variables to swap 2 numbers.
+
             Once the labels are filled with values, you can press the 'Record Results' button to save your results to a
             ListView in the 'Recent Results' tab.
+
             From there you can preview your results by clicking on any element of the list, and the appropriate labels
             will fill up to show the full results of your test.
+
             If you wish to save those results, type a file name in the text box below the 'Save to file' button, which will
             print your results into that file. There is no need to add ".txt" to the end. It will not empty your ListView.
             Load From File works intuitively, and does not clear the file.
+
             Neither Save nor load will append to the file/list
  */
 
@@ -47,7 +52,7 @@ public class Controller {
     public Label ChangesLabelMerge;
     public Label ComparisionsLabelMerge;
     public ListView List;
-    public Label BCh;
+    public Label BCh; //B = bubble, I = insert, M = merge, Q = quicksort, Ch = changes, Co = compares
     public Label ICh;
     public Label QCh;
     public Label MCh;
@@ -74,19 +79,19 @@ public class Controller {
     }
 
     public void LearnInsertion(ActionEvent actionEvent) {
-        LearningTag.setText("Insertion sort is an algorithm that builds a sorted array by inserting one element at a time, starting from the left\n" +
+        LearningTag.setText("Insertion sort is an algorithm that builds a sorted array by inserting one element at a time, starting from the left.\n" +
                 "2, 8, 4, 3, 9\n" +
                 "we will start with the very first element, 2. Obviously, an array of size one is guaranteed to be sorted.\n" +
                 "2,] 8, 4, 3, 9\n" +
                 "we will then integrate 8. Since it is higher than 2, it is already in order. Assume that everything to the left of the\n" +
-                " ']' is sorted\n" +
+                " ']' is sorted.\n" +
                 "2, 8,] 4, 3, 9\n" +
-                "we will then have to integrate the 4, which goes in between the 3 and the 8\n" +
+                "we will then have to integrate the 4, which goes in between the 2 and the 8.\n" +
                 "2, 4, 8,] 3, 9\n" +
-                "and then the three\n" +
+                "and then the three.\n" +
                 "2, 3, 4, 8,] 9\n" +
                 "2, 3, 4, 8, 9]\n" +
-                "The array is now sorted\n");
+                "The array is now sorted.\n");
     }
 
     public void LearnMerge(ActionEvent actionEvent) {
@@ -109,12 +114,12 @@ public class Controller {
     public void LearnBogo(ActionEvent actionEvent) {
         LearningTag.setText("Bogo sort is an impractical algorithm in which the elements are repeatedly randomized\n " +
                 "and checked until they are in order.\n" +
-                "On average, this algorithm takes n! (factorial) time to complete. However, since it can theoretically sort\n" +
+                "On average, this algorithm takes n! time to complete. However, since it can theoretically sort\n" +
                 "any array on its first try, it is technically speaking the fastest sorting algorithm in the best case.");
     }
 
     public void LearnQuicksort(ActionEvent actionEvent) {
-        LearningTag.setText("Quicksort is another recursive algorithm, similar to Merge sort. This one works differently however.\n" +
+        LearningTag.setText("Quicksort is another recursive algorithm, similar to Merge sort.\n" +
                 "To do Quicksort, first select an element to be the 'Pivot'. It can be any element you wish, but I prefer to \n" +
                 "use the first element. Then, restructure the array so that all the elements that are less than the pivot are to the\n" +
                 "left of the pivot, and all elements greater are to the right. Repeat for the arrays on either side of the pivot.\n" +
@@ -209,6 +214,7 @@ public class Controller {
         boolean sorted = false;
         int temp;
         while (!sorted) { //needs to repeat this process until the array has been found to be sorted
+            sorted = true;
             for (int i = 0; i < (newArray.length) - 1; i++) {
                 compares++;
                 if (newArray[i] > newArray[i + 1]) { //checks if the 2 elements are out of order and swaps them if they are
@@ -216,15 +222,16 @@ public class Controller {
                     newArray[i] = newArray[i + 1];
                     newArray[i + 1] = temp;
                     changes += 3;
-                }
-            }
-            sorted = true;
-            for (int i = 0; i < newArray.length - 1 && sorted; i++) { //checking if the array is in order
-                compares++;
-                if (newArray[i] > newArray[i + 1]) {
                     sorted = false;
                 }
             }
+//            sorted = true;
+//            for (int i = 0; i < newArray.length - 1 && sorted; i++) { //checking if the array is in order
+//                compares++;
+//                if (newArray[i] > newArray[i + 1]) {
+//                    sorted = false;
+//                }
+//            }
         }
 
         ChangesLabelBubble.setText(String.valueOf(changes));
@@ -240,13 +247,13 @@ public class Controller {
         int[] newArray = new int[MainArray.length];
         System.arraycopy(MainArray, 0, newArray, 0, MainArray.length);
 
-        for (int i = 0; i < newArray.length; i++) {
+        for (int i = 1; i < newArray.length; i++) {
             compares++;
             for (int ii = 0; newArray[ii] < newArray[i]; ii++) { //find the position where the next element is to be inserted
                 compares++;
                 location++;
             }
-
+            changes++;
             temp = newArray[i];
 
             for (int ii = i; ii > location; ii--) {//inserts that number into the slot
@@ -268,15 +275,15 @@ public class Controller {
 
     } //incomplete recording of comparisions and checks
 
-    public void Quicksort()  {
+    public void Quicksort()  {//this is a main function that exists only to call the recursive function and change the labels
         int[] Backup = new int[MainArray.length];
         System.arraycopy(MainArray, 0, Backup, 0, MainArray.length);
         int[] results;
         results = Quicksorta(0, MainArray.length - 1);
         System.out.println("\n\n\nCompleted Array:\n");
 
-        ChangesLabelQuick.setText(String.valueOf(results[0]));
-        ComparisionsLabelQuick.setText(String.valueOf(results[1]));
+        ChangesLabelQuick.setText(String.valueOf(results[1]));
+        ComparisionsLabelQuick.setText(String.valueOf(results[0]));
 
 
         /*for (int ii = 0; ii < MainArray.length; ii++) {
@@ -308,9 +315,9 @@ public class Controller {
         changes += 3;
 
 
-        int x[] = new int[2];
-        int y[] = new int[2];
-        int z[] = new int[2];
+        int[] x = new int[2];
+        int[] y = new int[2];
+        int[] z = new int[2];
         if (i - start > 1) { //to ensure that the first half is larger than 1, otherwise it won't work
 
             x = Quicksorta(start, i - 1);
@@ -370,8 +377,6 @@ public class Controller {
                 z[0]++;
             }
         }
-
-
         for(int i = 0; i < temparray.length; i++)
         {
             MainArray[s1+i] = temparray[i];
@@ -379,7 +384,7 @@ public class Controller {
         }
         return z;
     }
-    public int[] MergeSort(int start, int end, int changes, int comparisons) //both start and end should be inclusive. 4, 7, would be 4, 5, 6, 7
+    public int[] MergeSort(int start, int end) //both start and end should be inclusive. 4, 7, would be 4, 5, 6, 7
     {
         int[] x = {0, 0};
         int[] y = {0, 0};
@@ -389,12 +394,12 @@ public class Controller {
         }
         int half = (end - start) / 2 + start;
 
-        x = MergeSort(start, half, changes, comparisons);
-        y = MergeSort(half + 1, end, changes, comparisons);
+        x = MergeSort(start, half);
+        y = MergeSort(half + 1, end);
         z = Merge(start, half+1, half+1, end+1);
         int[] a = {0, 0};
-        a[0] = changes + x[0] + y[0] + z[0];
-        a[1] = comparisons + x[1] + y[1] + z[1]; //accumulates previous changes and comparisons alongside those of subarrays
+        a[0] = x[0] + y[0] + z[0];
+        a[1] = x[1] + y[1] + z[1]; //accumulates previous changes and comparisons alongside those of subarrays
         return a;
     }
 
@@ -402,7 +407,7 @@ public class Controller {
 
         int[] Backup = new int[MainArray.length];
         System.arraycopy(MainArray, 0, Backup, 0, MainArray.length);
-        int[] x = MergeSort(0, MainArray.length-1, 0, 0);
+        int[] x = MergeSort(0, MainArray.length-1);
         ChangesLabelMerge.setText(String.valueOf(x[0]));
         ComparisionsLabelMerge.setText(String.valueOf(x[1]));
         System.out.println();
